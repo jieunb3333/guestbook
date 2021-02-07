@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 from pathlib import Path
 import os
 from os.path import abspath, dirname, join
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -23,13 +24,15 @@ ROOT_DIR = os.path.dirname(BASE_DIR)
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'x#lddquh6z&%^7p0=6c#)j0+11*$hyryne$yij)f@7t$-%s31g'
+# SECRET_KEY = 'x#lddquh6z&%^7p0=6c#)j0+11*$hyryne$yij)f@7t$-%s31g'
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'x#lddquh6z&%^7p0=6c#)j0+11*$hyryne$yij)f@7t$-%s31g')
 
-import django_heroku
+
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
-
-ALLOWED_HOSTS = ['127.0.0.1','.herokuapp.com','localhost']
+# DEBUG = True
+DEBUG = bool( os.environ.get('DJANGO_DEBUG', True) )
+ALLOWED_HOSTS = ['*']
+# ALLOWED_HOSTS = ['127.0.0.1','.herokuapp.com','localhost']
 
 
 # Application definition
@@ -54,7 +57,6 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
-django_heroku.settings(locals())
 
 ROOT_URLCONF = 'config.urls'
 
@@ -80,12 +82,29 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 DATABASES = {
+
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'd8ph7i4d4j77u1',
+        'USER': 'gvonnfyurddgkt',
+        'PASSWORD': '997e40f69e0a4008f18401048f9db21246ddb0b3dcc5e93c173ef1b4837e6e61',
+        'HOST': 'ec2-34-225-162-157.compute-1.amazonaws.com',
+        'PORT': '5432'
+
+
     }
 }
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
+
+
 
 
 # Password validation
