@@ -25,8 +25,9 @@ ROOT_DIR = os.path.dirname(BASE_DIR)
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'x#lddquh6z&%^7p0=6c#)j0+11*$hyryne$yij)f@7t$-%s31g'
 
+import django_heroku
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['127.0.0.1','.herokuapp.com','localhost']
 
@@ -53,6 +54,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
+django_heroku.settings(locals())
 
 ROOT_URLCONF = 'config.urls'
 
