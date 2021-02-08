@@ -15,13 +15,18 @@ body{
 h2{
     font-family: 'yg-jalnan';
     color: rgb(106,96,169);
-    margin: 20 auto;
+    margin-bottom: 50px;
     text-align: center;
+
+
 } 
 div{
-    width: 500px;
-    margin: 0 auto;
 
+    margin: 0 10px;
+
+}
+audio{
+    visibility: hidden;
 }
 a{
     font-family: 'NEXON Lv1 Gothic OTF'; 
@@ -30,17 +35,17 @@ a{
 
 .background{
     margin-top: 30px;
-    padding: 30px;
+    padding: 30px 10px;
     text-align: center;
 
     background-color: rgba(238, 238, 238, 0.274);
 }
 .postit{
-    display: inline-block;
+    display: inline-table;
     width: 180px;
     height: 240px;
     padding: 65px 13px;
-    margin: 30px;
+    margin: 10px 30px;
     
 
     background-image: url("postit.png");
