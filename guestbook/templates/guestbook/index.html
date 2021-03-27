@@ -26,26 +26,26 @@
       <audio autoplay controls style="width: 230px ;"> <source src="{% static 'audio/keshi - right here (Lyric Video).mp3' %}" type="audio/mp3"> </audio>
         <div>
            <h2 class="scale-in-center">I'm JIEUN PARK</h2>
-            <div>
-              <img src="static\photo\profilephoto.jpg" style="margin-right:50px" class="img-circle" alt="" width="200px">
-              <p style="display: inline; ">박지은(98.09.01) 23세 ESTJ
+            <div class="introduce">
+              <div style="width: 60%;" class="center-block">
+        
+                <img src="static/photo/profilephoto.jpg" class="img-responsive center-block img-circle" alt="Responsive image">
+              </div>
+              <br>
+              
+              <p><mark>박지은</mark> (98.09.01) 24세 ESTJ
               </p>
             </div>
             <br><br>
             
-            
-            <div>
+            <div class="introduce">
               <p style="display: inline-block; width: 200px;" >
                 <strong>CONTACT</strong> <br><br>
-                💜 BLOG <a href="https://blog.naver.com/jieun1172">blog/jieun1172</a> <br>
+                💜 INSTAGRAM <a href="https://www.instagram.com/nomad_jji/">insta nomad_jji</a> <br>
                 💜 YOUTUBE <a href="https://www.youtube.com/channel/UCjy2pMYGL9yl5M81qYLnKYg">youtube지훈</a><br>
                 💜 FACEBOOK <a href="https://www.facebook.com/profile.php?id=100004727674732">facebook/jieun</a><br>
-                💜 Kakao talk
-                <img src="static\photo\kakaoTalk.jpg" alt="" width="80px"><br>
-    
-              </p>
-              <img src="static\photo\sea.jpg" class="img-circle" style="display: inline;margin-left:50px" alt="" width="200px">
-            </div>
+              </p></div>
+
         </div>
         <br><br>
         <div class="background">
@@ -62,7 +62,8 @@
           <mark>{{ post.writer }}</mark>
             {{ post.content }}
             <small>{{ post.pub_date }}</small>
-            
+
+            <a href="{% url 'update' post.id %}">수정</a>
             <a href="{% url 'delete' post.id %}">삭제</a>
             <a href="{% url 'comment' post.id %}">댓글</a>
             {% for comment in post.comment_set.all %}

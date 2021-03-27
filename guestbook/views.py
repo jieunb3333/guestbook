@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect
 from .models import Post,Comment
 from .forms import GuestForm,CommentForm
+from django.utils import timezone
 
 
 # Create your views here.
@@ -21,6 +22,17 @@ def index(request):
         form = GuestForm()
         return render(request,'guestbook/index.html',{'posts':posts,'comments':comments,'form':form})
 
+def update(request,post_id):
+    post = Post.objects.get(id=post_id)
+    return render(request,'guestbook/update.html',{'post':posts})
+
+def edit(request,post_id):
+    post = Post.objects.get(id=post_id)
+    post.writer = request.POST['writer']
+    post.content = request.POST['content']
+    post.pub_date = timezone.now()
+    post.save()
+    return redirect('index')
 
 def delete(request,post_id):
     post = Post.objects.get(id=post_id)

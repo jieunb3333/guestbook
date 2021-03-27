@@ -20,7 +20,9 @@ import guestbook.views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',guestbook.views.index, name="index"),
+    path('update/<int:post_id>',guestbook.views.update, name="update"),
     path('delete/<int:post_id>',guestbook.views.delete, name="delete"),
+    path('edit//<int:post_id>',guestbook.views.edit, name="edit"),
     path('comment/<int:post_id>',guestbook.views.comment, name="comment"),
     path('c_delete/<int:comment_id>',guestbook.views.c_delete,name="c_delete"),
 ]
